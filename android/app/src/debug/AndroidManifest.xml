@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yourappname">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+
+    <!-- Google Maps Feature -->
+    <uses-feature android:name="android.hardware.location.gps" android:required="true"/>
+
+    <application
+        android:label="Aidlink"
+        android:icon="@mipmap/ic_launcher">
+
+        <!-- Add your Google Maps API Key directly -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDsMNm2JzvS5DoBlb0bkIyCTwzy2IuA3FU"/>
+
+    </application>
+</manifest>

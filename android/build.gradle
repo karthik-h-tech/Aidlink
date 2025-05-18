@@ -1,0 +1,33 @@
+// ✅ Kotlin and Gradle version updates
+buildscript {
+    ext.kotlin_version = '1.9.21'   // Update to the latest compatible version
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()         // Add this for better dependency resolution
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.3.0'  // Use latest stable Gradle version
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.15'   // Firebase
+    }
+}
+
+// ✅ Remove Duplicate `clean` Task
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// ✅ Use only one clean task
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(":app")
+}

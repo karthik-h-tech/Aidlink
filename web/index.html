@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="aidlink">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>aidlink</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- ✅ Add Google Maps JavaScript API with your new key -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV2N6k55VHzRURY-3w84QeCgg8OT1eWxs&libraries=places"></script>
+
+
+</head>
+<body>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAPR7BNSaOduWZzkm8DIn2M5RWCmUJFfB4",
+
+      authDomain: "aidlink-5dcb0.firebaseapp.com",
+      projectId: "aidlink-5dcb0",
+      storageBucket: "aidlink-5dcb0.firebasestorage.app",
+      messagingSenderId: "164072024038",
+      appId: "1:164072024038:web:cae8efee0637a8cc595827"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <script src="flutter_bootstrap.js" async></script>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+D:/aidlink/aidlink/android/app/.cxx/RelWithDebInfo/1w736v20/x86/CMakeFiles/edit_cache.dir
+D:/aidlink/aidlink/android/app/.cxx/RelWithDebInfo/1w736v20/x86/CMakeFiles/rebuild_cache.dir

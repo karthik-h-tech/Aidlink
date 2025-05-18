@@ -1,0 +1,2 @@
+D:/mini project/aidlink/android/app/.cxx/RelWithDebInfo/1f3e603l/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/mini project/aidlink/android/app/.cxx/RelWithDebInfo/1f3e603l/armeabi-v7a/CMakeFiles/rebuild_cache.dir
