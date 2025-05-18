@@ -4,6 +4,16 @@
 
 ---
 
+## 🛠 Admin Demo Page
+
+A static admin dashboard is included in the `/Admin/` folder. It showcases a UI for administrators to manage data.
+
+📌 Note:  
+- This is **not connected to a backend**.  
+- It is for **design/demo purposes only**.  
+- You must integrate it with Flask + Firebase/MySQL if you plan to make it functional.  
+---
+
 ## 🌟 Features
 
 - 🔒 Secure login via **Firebase Authentication**  
