@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Start - Admin Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #0F172A, #1E293B);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 40px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            color: #d1d5db;
+            letter-spacing: 0.5px;
+            margin-bottom: 60px;
+        }
+        .btn-get-started {
+            background-color: #FB923C;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(251, 146, 60, 0.5);
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-get-started:hover {
+            background-color: #f97316;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="asset/final-image.png" alt="Profile Image" class="profile-image" onerror="this.onerror=null;this.src='https://via.placeholder.com/250?text=Profile+Image';" />
+        <h1>AidLink</h1>
+        <p>Emergency Assistance at Your Fingertips</p>
+        <a href="index.html" class="btn-get-started">Get Started</a>
+    </div>
+</body>
+</html>

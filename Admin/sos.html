@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emergency SOS Alerts Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
+    th {
+      background-color: #0F172A;
+    }
+    button {
+      background-color: #fb923c;
+      border: none;
+      color: #0F172A;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-right: 5px;
+    }
+    button:hover {
+      background-color: #f97316;
+    }
+    .status {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+    <h1>Emergency SOS Alerts Management</h1>
+  </header>
+  <main>
+    <table id="alerts-table">
+      <thead>
+        <tr>
+          <th>Alert ID</th>
+          <th>Location</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SOS001</td>
+          <td>37.7749, -122.4194</td>
+          <td>2024-06-01 14:30</td>
+          <td class="status">Pending</td>
+          <td>
+            <button onclick="updateStatus(this, 'Acknowledged')">Acknowledge</button>
+            <button onclick="updateStatus(this, 'Resolved')">Resolve</button>
+          </td>
+        </tr>
+        <tr>
+          <td>SOS002</td>
+          <td>34.0522, -118.2437</td>
+          <td>2024-06-01 15:00</td>
+          <td class="status">Acknowledged</td>
+          <td>
+            <button onclick="updateStatus(this, 'Resolved')">Resolve</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <script>
+    function updateStatus(button, newStatus) {
+      const row = button.closest('tr');
+      const statusCell = row.querySelector('.status');
+      statusCell.textContent = newStatus;
+
+      // Disable buttons for previous statuses
+      const buttons = row.querySelectorAll('button');
+      buttons.forEach(btn => {
+        btn.disabled = false;
+      });
+      button.disabled = true;
+
+      alert('Status updated to ' + newStatus);
+    }
+  </script>
+</body>
+</html>

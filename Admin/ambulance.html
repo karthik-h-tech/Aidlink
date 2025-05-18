@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ambulance Requests Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
+    th {
+      background-color: #0F172A;
+    }
+    button {
+      background-color: #fb923c;
+      border: none;
+      color: #0F172A;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-right: 5px;
+    }
+    button:hover {
+      background-color: #f97316;
+    }
+    .status {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+    <h1>Ambulance Requests Management</h1>
+  </header>
+  <main>
+    <table id="requests-table">
+      <thead>
+        <tr>
+          <th>Details</th>
+          <th>Phone</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Severe chest pain</td>
+          <td>+1 123-456-7890</td>
+          <td>37.7749, -122.4194</td>
+          <td class="status">Dispatched</td>
+          <td>
+            <button onclick="updateStatus(this, 'En route')">En route</button>
+            <button onclick="updateStatus(this, 'Nearby')">Nearby</button>
+            <button onclick="updateStatus(this, 'Arrived')">Arrived</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Car accident victim</td>
+          <td>+1 987-654-3210</td>
+          <td>34.0522, -118.2437</td>
+          <td class="status">En route</td>
+          <td>
+            <button onclick="updateStatus(this, 'Nearby')">Nearby</button>
+            <button onclick="updateStatus(this, 'Arrived')">Arrived</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <section style="margin-top: 3rem;">
+    <h2>Ambulance Drivers</h2>
+    <table id="drivers-table" style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+      <thead>
+        <tr style="background-color: #0F172A;">
+          <th style="padding: 0.75rem; border-bottom: 1px solid #334155; text-align: left;">Driver Name</th>
+          <th style="padding: 0.75rem; border-bottom: 1px solid #334155; text-align: left;">Address</th>
+          <th style="padding: 0.75rem; border-bottom: 1px solid #334155; text-align: left;">Location</th>
+          <th style="padding: 0.75rem; border-bottom: 1px solid #334155; text-align: left;">Area Served</th>
+          <th style="padding: 0.75rem; border-bottom: 1px solid #334155; text-align: left;">Active</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">John Doe</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">123 Main St, Cityville</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">37.7749, -122.4194</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">North District</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">Yes</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">Jane Smith</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">456 Oak Ave, Townsville</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">34.0522, -118.2437</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">East District</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">No</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <script>
+    function updateStatus(button, newStatus) {
+      const row = button.closest('tr');
+      const statusCell = row.querySelector('.status');
+      statusCell.textContent = newStatus;
+
+      // Disable buttons for previous statuses
+      const buttons = row.querySelectorAll('button');
+      buttons.forEach(btn => {
+        btn.disabled = false;
+      });
+      button.disabled = true;
+
+      alert('Status updated to ' + newStatus);
+    }
+  </script>
+</body>
+</html>

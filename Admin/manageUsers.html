@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
+    th {
+      background-color: #0F172A;
+    }
+    button {
+      background-color: #fb923c;
+      border: none;
+      color: #0F172A;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover {
+      background-color: #f97316;
+    }
+    select {
+      background-color: #1E293B;
+      color: white;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-weight: 600;
+    }
+    input[type="text"] {
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background-color: #1E293B;
+      color: white;
+      font-weight: 600;
+      width: 250px;
+    }
+  </style>
+</head>
+  <body>
+    <header>
+      <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+      <h1>User Management</h1>
+    </header>
+    <main>
+      <label for="search">Search Users:</label>
+      <input type="text" id="search" placeholder="Enter name or email" onkeyup="filterUsers()" />
+      <table id="users-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John Doe</td>
+            <td>john@example.com</td>
+            <td><button onclick="toggleStatus(this)">Active</button></td>
+            <td>
+              <select>
+                <option selected>User</option>
+                <option>Volunteer</option>
+                <option>Field Agent</option>
+                <option>Admin</option>
+              </select>
+            </td>
+            <td><button onclick="saveChanges(this)">Save</button></td>
+          </tr>
+          <tr>
+            <td>Jane Smith</td>
+            <td>jane@example.com</td>
+            <td><button onclick="toggleStatus(this)">Inactive</button></td>
+            <td>
+              <select>
+                <option>User</option>
+                <option selected>Volunteer</option>
+                <option>Field Agent</option>
+                <option>Admin</option>
+              </select>
+            </td>
+            <td><button onclick="saveChanges(this)">Save</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <script>
+      function toggleStatus(button) {
+        if (button.textContent === 'Active') {
+          button.textContent = 'Inactive';
+          button.style.backgroundColor = '#ef4444'; // red
+          button.style.color = 'white';
+        } else {
+          button.textContent = 'Active';
+          button.style.backgroundColor = '#fb923c'; // orange
+          button.style.color = '#0F172A';
+        }
+      }
+      function saveChanges(button) {
+        alert('Changes saved for this user.');
+      }
+      function filterUsers() {
+        const input = document.getElementById('search');
+        const filter = input.value.toLowerCase();
+        const table = document.getElementById('users-table');
+        const trs = table.getElementsByTagName('tr');
+        for (let i = 1; i < trs.length; i++) {
+          const tds = trs[i].getElementsByTagName('td');
+          const name = tds[0].textContent.toLowerCase();
+          const email = tds[1].textContent.toLowerCase();
+          if (name.includes(filter) || email.includes(filter)) {
+            trs[i].style.display = '';
+          } else {
+            trs[i].style.display = 'none';
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

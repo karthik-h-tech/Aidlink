@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SOS Alerts Admin</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
+    th {
+      background-color: #0F172A;
+    }
+    button {
+      background-color: #fb923c;
+      border: none;
+      color: #0F172A;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover {
+      background-color: #f97316;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+    <h1>SOS Alerts Admin</h1>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Alert ID</th>
+          <th>User</th>
+          <th>Location</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Assign Responder</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>001</td>
+          <td>John Doe</td>
+          <td>Downtown</td>
+          <td>2024-06-01 14:30</td>
+          <td>Pending</td>
+          <td><button onclick="assignResponder(this)">Assign</button></td>
+        </tr>
+        <tr>
+          <td>002</td>
+          <td>Jane Smith</td>
+          <td>Uptown</td>
+          <td>2024-06-01 15:00</td>
+          <td>In Progress</td>
+          <td><button disabled>Assigned</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <script>
+    function assignResponder(button) {
+      alert('Responder assigned to this SOS alert.');
+      button.textContent = 'Assigned';
+      button.disabled = true;
+      button.style.backgroundColor = '#6b7280'; // gray
+      button.style.color = 'white';
+    }
+  </script>
+</body>
+</html>

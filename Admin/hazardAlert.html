@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hazard Alert</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+    }
+    .search-container {
+      margin-bottom: 1rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+    .contact-list {
+      margin-top: 1rem;
+    }
+    .contact-item {
+      background-color: #1E293B;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .contact-info {
+      flex-grow: 1;
+    }
+    .contact-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .contact-location {
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    .contact-distance {
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    .contact-buttons button {
+      background-color: #22c55e;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+    .contact-buttons button:hover {
+      background-color: #16a34a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+    <h1>Hazard Alert</h1>
+  </header>
+  <main>
+    <section>
+      <h2>Hazard Reports Management</h2>
+      <table id="reports-table" style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+        <thead>
+          <tr style="background-color: #0F172A;">
+            <th style="padding: 0.75rem; border-bottom: 1px solid #334155; text-align: left;">Report ID</th>
+            <th style="padding: 0.75rem; border-bottom: 1px solid #334155; text-align: left;">Description</th>
+            <th style="padding: 0.75rem; border-bottom: 1px solid #334155; text-align: left;">Status</th>
+            <th style="padding: 0.75rem; border-bottom: 1px solid #334155; text-align: left;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">R001</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">Flooding in low-lying area</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid #334155;" class="status">Pending</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">
+              <button onclick="updateStatus(this, 'Acknowledged')">Acknowledge</button>
+              <button onclick="updateStatus(this, 'Resolved')">Resolve</button>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">R002</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">Road blockage due to landslide</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid #334155;" class="status">Acknowledged</td>
+            <td style="padding: 0.75rem; border-bottom: 1px solid #334155;">
+              <button onclick="updateStatus(this, 'Resolved')">Resolve</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="filterContacts()" />
+    </div>
+    <div id="contactList" class="contact-list">
+      <!-- Contacts will be rendered here -->
+    </div>
+  </main>
+  <script>
+    const contacts = [
+      {name: 'National Emergency Management Agency', location: 'Emergency Center', phone: '112', distance: '5.2 km'},
+      {name: 'Disaster Management', location: 'Main Centre', phone: '108', distance: '12.4 km'},
+      {name: 'National Disaster Management Authority', location: 'Centre Station', phone: '011-26701730', distance: '20.1 km'}
+    ];
+
+    function renderContacts(list) {
+      const container = document.getElementById('contactList');
+      container.innerHTML = '';
+      list.forEach(contact => {
+        const div = document.createElement('div');
+        div.className = 'contact-item';
+
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'contact-info';
+        infoDiv.innerHTML = `<div class="contact-name">${contact.name}</div>
+                             <div class="contact-location">${contact.location}</div>
+                             <div class="contact-distance">${contact.distance}</div>`;
+
+        const buttonsDiv = document.createElement('div');
+        buttonsDiv.className = 'contact-buttons';
+
+        const callBtn = document.createElement('button');
+        callBtn.textContent = 'Call';
+        callBtn.onclick = () => {
+          window.location.href = 'tel:' + contact.phone;
+        };
+
+        const mapBtn = document.createElement('button');
+        mapBtn.textContent = 'Map';
+        mapBtn.onclick = () => {
+          const url = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(contact.name);
+          window.open(url, '_blank');
+        };
+
+        buttonsDiv.appendChild(callBtn);
+        buttonsDiv.appendChild(mapBtn);
+
+        div.appendChild(infoDiv);
+        div.appendChild(buttonsDiv);
+
+        container.appendChild(div);
+      });
+    }
+
+    function filterContacts() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = contacts.filter(c => c.name.toLowerCase().includes(query));
+      renderContacts(filtered);
+    }
+
+    // Initial render
+    renderContacts(contacts);
+
+    function updateStatus(button, newStatus) {
+      const row = button.closest('tr');
+      const statusCell = row.querySelector('.status');
+      statusCell.textContent = newStatus;
+
+      // Disable buttons for previous statuses
+      const buttons = row.querySelectorAll('button');
+      buttons.forEach(btn => {
+        btn.disabled = false;
+      });
+      button.disabled = true;
+
+      alert('Status updated to ' + newStatus);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+      max-width: 600px;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    input[type="text"], select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background-color: #1E293B;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+    button {
+      margin-top: 1.5rem;
+      background-color: #fb923c;
+      border: none;
+      color: #0F172A;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 150px;
+    }
+    button:hover {
+      background-color: #f97316;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+    <h1>Settings</h1>
+  </header>
+  <main>
+    <form id="settings-form" onsubmit="saveSettings(event)">
+      <label for="admin-role">Admin Role</label>
+      <select id="admin-role" required>
+        <option value="" disabled selected>Select Role</option>
+        <option>Super Admin</option>
+        <option>Moderator</option>
+        <option>Viewer</option>
+      </select>
+
+      <label for="system-status">System Status</label>
+      <select id="system-status" required>
+        <option value="" disabled selected>Select Status</option>
+        <option>Online</option>
+        <option>Maintenance</option>
+        <option>Offline</option>
+      </select>
+
+      <label for="log-access">Log Access Level</label>
+      <select id="log-access" required>
+        <option value="" disabled selected>Select Access Level</option>
+        <option>Full</option>
+        <option>Restricted</option>
+        <option>None</option>
+      </select>
+
+      <button type="submit">Save Settings</button>
+    </form>
+  </main>
+  <script>
+    function saveSettings(event) {
+      event.preventDefault();
+      alert('Settings saved successfully.');
+      document.getElementById('settings-form').reset();
+    }
+  </script>
+</body>
+</html>

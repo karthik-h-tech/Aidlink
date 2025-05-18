@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News & Alerts Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+    }
+    input[type="text"], textarea {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background-color: #1E293B;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    button {
+      background-color: #fb923c;
+      border: none;
+      color: #0F172A;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 150px;
+      align-self: flex-start;
+    }
+    button:hover {
+      background-color: #f97316;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+    <h1>News & Alerts Management</h1>
+  </header>
+  <main>
+    <form id="news-form" onsubmit="postNews(event)">
+      <input type="text" id="news-title" placeholder="Title" required />
+      <textarea id="news-content" rows="6" placeholder="Content" required></textarea>
+      <button type="submit">Post News</button>
+    </form>
+  </main>
+  <script>
+    function postNews(event) {
+      event.preventDefault();
+      const title = document.getElementById('news-title').value;
+      const content = document.getElementById('news-content').value;
+      alert('News posted: ' + title);
+      document.getElementById('news-form').reset();
+    }
+  </script>
+</body>
+</html>

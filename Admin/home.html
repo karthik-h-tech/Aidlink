@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    nav a {
+      color: #fb923c;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      flex: 1;
+      padding: 2rem;
+    }
+    .stats-container {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .stat-box {
+      background-color: #1E293B;
+      border-radius: 12px;
+      padding: 2rem;
+      flex: 1;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(251, 146, 60, 0.5);
+      transition: background-color 0.3s ease;
+      cursor: default;
+    }
+    .stat-box:hover {
+      background-color: #fb923c;
+      color: #0F172A;
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    section {
+      background-color: #1E293B;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      margin-bottom: 2rem;
+    }
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      border-bottom: 2px solid #fb923c;
+      padding-bottom: 0.5rem;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    ul li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #334155;
+    }
+    ul li:last-child {
+      border-bottom: none;
+    }
+    footer {
+      background-color: #1E293B;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    /* Emergency sections cards */
+    .card-container {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    .card {
+      background-color: #1E293B;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 1rem;
+      flex: 1 1 150px;
+      max-width: 200px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-align: center;
+      color: white;
+      user-select: none;
+    }
+    .card:hover {
+      background-color: #fb923c;
+      color: #0F172A;
+    }
+    .card img {
+      max-width: 80px;
+      margin-bottom: 0.5rem;
+    }
+    .card-label {
+      font-weight: 600;
+      font-size: 1rem;
+      white-space: pre-line;
+    }
+    .sos-button {
+      background-color: #FF4081;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 1rem 0;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .sos-button:hover {
+      background-color: #D42A54;
+    }
+    .sos-icon {
+      font-size: 1.5rem;
+      color: white;
+    }
+    .icon-link {
+      color: white;
+      text-decoration: none;
+    }
+    .icon-link:hover {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <a href="start.html">Start Page</a>
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="dashboard-container">
+      <div class="dashboard-widget stats-widget">
+        <h2>Statistics</h2>
+        <div class="stats-container">
+          <div class="stat-box">
+            <div class="stat-number" id="user-count">123</div>
+            <div class="stat-label">Number of Users</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="volunteer-count">45</div>
+            <div class="stat-label">Number of Volunteers</div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="dashboard-widget sos-widget">
+        <h2>Emergency SOS</h2>
+        <button class="sos-button" onclick="location.href='sos.html'">
+          <span class="sos-icon">&#9888;</span> SOS
+        </button>
+        <p>Press the button above to navigate to the SOS page.</p>
+      </div>
+
+      <div class="dashboard-widget services-widget">
+        <h2>Emergency Services & Contacts</h2>
+        <div class="card-container">
+          <div class="card" onclick="location.href='wildlifeConservation.html'">
+            <img src="asset/earthquake.png" alt="Wildlife Conservation" />
+            <div class="card-label">Wildlife&#10;Conservation</div>
+          </div>
+          <div class="card" onclick="location.href='hazardAlert.html'">
+            <img src="asset/Hazard.png" alt="Hazard Alert" />
+            <div class="card-label">Hazard&#10;Alert</div>
+          </div>
+          <div class="card" onclick="location.href='disasterRecovery.html'">
+            <img src="asset/disaster.png" alt="Disaster Recovery" />
+            <div class="card-label">Disaster&#10;Recovery</div>
+          </div>
+          <div class="card" onclick="location.href='fireRescue.html'">
+            <img src="asset/firere.png" alt="Fire Rescue" />
+            <div class="card-label">Fire&#10;Rescue</div>
+          </div>
+          <div class="card" onclick="location.href='ambulance.html'">
+            <img src="asset/Ambulance.png" alt="Ambulance" />
+            <div class="card-label">Ambulance</div>
+          </div>
+          <div class="card" onclick="location.href='hospital.html'">
+            <img src="asset/hospital.png" alt="Hospital" />
+            <div class="card-label">Hospital</div>
+          </div>
+          <div class="card" onclick="location.href='police.html'">
+            <img src="asset/Policelogo.png" alt="Police" />
+            <div class="card-label">Police</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-widget admin-actions-widget">
+        <h2>Admin Actions</h2>
+        <div class="card-container">
+          <div class="card"><a href="manageUsers.html" title="Manage Users" class="icon-link">&#128100;<br/>Manage Users</a></div>
+          <div class="card"><a href="manageVolunteers.html" title="Manage Volunteers" class="icon-link">&#128101;<br/>Manage Volunteers</a></div>
+          <div class="card"><a href="disasterReports.html" title="View Reports" class="icon-link">&#128196;<br/>View Reports</a></div>
+          <div class="card"><a href="settings.html" title="Settings" class="icon-link">&#9881;&#65039;<br/>Settings</a></div>
+          <div class="card"><a href="manageResources.html" title="Manage Resources" class="icon-link">&#128230;<br/>Manage Resources</a></div>
+          <div class="card"><a href="postNews.html" title="Post News/Alerts" class="icon-link">&#128221;<br/>Post News/Alerts</a></div>
+          <div class="card"><a href="manageEvents.html" title="Manage Emergency Events" class="icon-link">&#128681;<br/>Manage Emergency Events</a></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2024 Admin Dashboard. All rights reserved.
+  </footer>
+</body>
+</html>

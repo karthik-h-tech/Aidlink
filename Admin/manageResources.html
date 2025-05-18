@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manage Resources</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
+    th {
+      background-color: #0F172A;
+    }
+    button {
+      background-color: #fb923c;
+      border: none;
+      color: #0F172A;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover {
+      background-color: #f97316;
+    }
+    form {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    input, select {
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background-color: #1E293B;
+      color: white;
+      font-weight: 600;
+    }
+    input[type="text"] {
+      flex: 1 1 200px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+    <h1>Manage Resources</h1>
+  </header>
+  <main>
+    <form id="resource-form" onsubmit="addResource(event)">
+      <input type="text" id="resource-name" placeholder="Resource Name" required />
+      <select id="resource-type" required>
+        <option value="" disabled selected>Select Type</option>
+        <option>Hospital</option>
+        <option>Fire Station</option>
+        <option>Shelter</option>
+      </select>
+      <input type="text" id="resource-location" placeholder="Location" required />
+      <button type="submit">Add Resource</button>
+    </form>
+    <table id="resources-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Location</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>City Hospital</td>
+          <td>Hospital</td>
+          <td>Downtown</td>
+          <td><button onclick="deleteResource(this)">Delete</button></td>
+        </tr>
+        <tr>
+          <td>Central Fire Station</td>
+          <td>Fire Station</td>
+          <td>Midtown</td>
+          <td><button onclick="deleteResource(this)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <script>
+    function addResource(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById('resource-name');
+      const typeSelect = document.getElementById('resource-type');
+      const locationInput = document.getElementById('resource-location');
+      const table = document.getElementById('resources-table').getElementsByTagName('tbody')[0];
+
+      const newRow = table.insertRow();
+      newRow.insertCell(0).textContent = nameInput.value;
+      newRow.insertCell(1).textContent = typeSelect.value;
+      newRow.insertCell(2).textContent = locationInput.value;
+      const actionsCell = newRow.insertCell(3);
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'Delete';
+      deleteBtn.onclick = function() { deleteResource(deleteBtn); };
+      actionsCell.appendChild(deleteBtn);
+
+      nameInput.value = '';
+      typeSelect.value = '';
+      locationInput.value = '';
+    }
+
+    function deleteResource(button) {
+      const row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+  </script>
+</body>
+</html>

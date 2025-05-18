@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fire Rescue Reports Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
+    th {
+      background-color: #0F172A;
+    }
+    button {
+      background-color: #fb923c;
+      border: none;
+      color: #0F172A;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-right: 5px;
+    }
+    button:hover {
+      background-color: #f97316;
+    }
+    .status {
+      font-weight: 600;
+    }
+    .station-list {
+      margin-top: 3rem;
+    }
+    .station-list h2 {
+      margin-bottom: 1rem;
+    }
+    .station-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1E293B;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    .station-item button {
+      background-color: #22c55e;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+    .station-item button:hover {
+      background-color: #16a34a;
+    }
+    .station-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+    <h1>Fire Rescue Reports Management</h1>
+  </header>
+  <main>
+    <table id="reports-table">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Report Text</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>37.7749, -122.4194</td>
+          <td>Fire in residential building</td>
+          <td class="status">Pending</td>
+          <td>
+            <button onclick="updateStatus(this, 'Acknowledged')">Acknowledge</button>
+            <button onclick="updateStatus(this, 'Resolved')">Resolve</button>
+          </td>
+        </tr>
+        <tr>
+          <td>34.0522, -118.2437</td>
+          <td>Forest fire near park</td>
+          <td class="status">Acknowledged</td>
+          <td>
+            <button onclick="updateStatus(this, 'Resolved')">Resolve</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <section class="station-list">
+      <h2>Nearby Fire Stations</h2>
+      <div class="station-item">
+        <span>Central Fire Station - 123 Main St</span>
+        <div class="station-buttons">
+          <button onclick="callNumber('123-456-7890')">Call</button>
+          <button onclick="openMap('123 Main St')">Map</button>
+        </div>
+      </div>
+      <div class="station-item">
+        <span>Westside Fire Station - 456 Oak Ave</span>
+        <div class="station-buttons">
+          <button onclick="callNumber('987-654-3210')">Call</button>
+          <button onclick="openMap('456 Oak Ave')">Map</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    function updateStatus(button, newStatus) {
+      const row = button.closest('tr');
+      const statusCell = row.querySelector('.status');
+      statusCell.textContent = newStatus;
+
+      // Disable buttons for previous statuses
+      const buttons = row.querySelectorAll('button');
+      buttons.forEach(btn => {
+        btn.disabled = false;
+      });
+      button.disabled = true;
+
+      alert('Status updated to ' + newStatus);
+    }
+
+    function callNumber(phoneNumber) {
+      window.location.href = 'tel:' + phoneNumber;
+    }
+
+    function openMap(address) {
+      const url = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(address);
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>

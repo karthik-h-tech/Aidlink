@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Volunteer Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #0F172A, #1E293B);
+      color: white;
+      margin: 0;
+      padding: 2rem;
+    }
+    header {
+      background-color: #1E293B;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+    a.back-link {
+      color: #fb923c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      margin-top: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
+    th {
+      background-color: #0F172A;
+    }
+    button {
+      background-color: #fb923c;
+      border: none;
+      color: #0F172A;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover {
+      background-color: #f97316;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="home.html" class="back-link">&larr; Back to Dashboard</a>
+    <h1>Volunteer Management</h1>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Volunteer ID</th>
+          <th>Name</th>
+          <th>Region</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>V001</td>
+          <td>Emily Johnson</td>
+          <td>North District</td>
+          <td>Pending</td>
+          <td>
+            <button onclick="approve(this)">Approve</button>
+            <button onclick="reject(this)">Reject</button>
+          </td>
+        </tr>
+        <tr>
+          <td>V002</td>
+          <td>Michael Brown</td>
+          <td>East District</td>
+          <td>Approved</td>
+          <td>
+            <button disabled>Approve</button>
+            <button onclick="reject(this)">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <script>
+    function approve(button) {
+      const row = button.parentNode.parentNode;
+      row.cells[3].textContent = 'Approved';
+      button.disabled = true;
+      button.nextElementSibling.disabled = false;
+      alert('Volunteer approved.');
+    }
+    function reject(button) {
+      const row = button.parentNode.parentNode;
+      row.cells[3].textContent = 'Rejected';
+      button.disabled = true;
+      button.previousElementSibling.disabled = false;
+      alert('Volunteer rejected.');
+    }
+  </script>
+</body>
+</html>
